@@ -41,26 +41,10 @@ public class OpenRadioRequest extends YMRequest<OpenRadioRequest.OpenRadioRespon
             super(response);
         }
 
-        /*
-          "contents": {
-            "singleColumnMusicWatchNextResultsRenderer": {
-              "tabbedRenderer": {
-                "watchNextTabbedResultsRenderer": {
-                  "tabs": [
-                    {
-                      "tabRenderer": {  // title = Up next
-                        "content": {
-                          "musicQueueRenderer": {
-                            "content": {
-                              "playlistPanelRenderer": {
-                                "title": "85%",
-                                "contents": [
-         */
         public List<YMPlaylistTrack> getTracks() {
             List<YMPlaylistTrack> out = new ArrayList<>();
             JsonElement response = getResponse();
             JsonObject jsonObject = response.getAsJsonObject();
-            System.out.println(jsonObject);
             JsonObject contents = jsonObject.get("contents").getAsJsonObject();
             JsonObject singleColumnMusicWatchNextResultsRenderer = contents.get("singleColumnMusicWatchNextResultsRenderer").getAsJsonObject();
             JsonObject tabbedRenderer = singleColumnMusicWatchNextResultsRenderer.get("tabbedRenderer").getAsJsonObject();
