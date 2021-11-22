@@ -1,5 +1,6 @@
 import tk.fanamusic.youtubemusicapi.YoutubeMusicAPI;
 import tk.fanamusic.youtubemusicapi.objects.YMPlaylistTrack;
+import tk.fanamusic.youtubemusicapi.objects.streamingdata.YMStreamingFormat;
 import tk.fanamusic.youtubemusicapi.request.requests.OpenRadioRequest;
 import tk.fanamusic.youtubemusicapi.request.requests.VideoInfoRequest;
 
@@ -18,6 +19,11 @@ public class TestClient {
         }
 
         VideoInfoRequest.VideoInfoResponse videoInfo = api.request(new VideoInfoRequest("TFALdg7HUJU"));
+        for (YMStreamingFormat format : videoInfo.getStreamingData().getAdaptiveFormats()) {
+            if (format instanceof YMStreamingFormat.YMStreamingAdaptiveAudioFormat) {
+                System.out.println("Download audio:  Bitrate: " + format.getBitrate() + "  URL: " + format.getUrl());
+            }
+        }
         System.out.println(videoInfo.getDetail().getTitle());
     }
 

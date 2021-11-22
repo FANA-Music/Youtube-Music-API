@@ -37,7 +37,6 @@ public class OpenRadioRequest extends YMRequest<OpenRadioRequest.OpenRadioRespon
 
         public OpenRadioResponse(JsonElement response) {
             super(response);
-            System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response));
         }
 
         public List<YMPlaylistTrack> getTracks() {

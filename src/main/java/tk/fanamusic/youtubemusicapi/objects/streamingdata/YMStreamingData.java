@@ -15,6 +15,7 @@ public class YMStreamingData {
 
     @SerializedName("expiresInSeconds") private int expiresInSeconds;
     @SerializedName("formats") private List<YMStreamingFormat> formats;
+    @SerializedName("adaptiveFormats") private List<YMStreamingFormat> adaptiveFormats;
 
     public long getExpireUnitTime() {
         return createdTime + expiresInSeconds*1000L;
