@@ -1,9 +1,7 @@
 package tk.fanamusic.youtubemusicapi.request.requests;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import tk.fanamusic.youtubemusicapi.classes.YMPlaylistTrack;
+import com.google.gson.*;
+import tk.fanamusic.youtubemusicapi.objects.YMPlaylistTrack;
 import tk.fanamusic.youtubemusicapi.request.YMRequest;
 import tk.fanamusic.youtubemusicapi.request.YMResponse;
 
@@ -39,6 +37,7 @@ public class OpenRadioRequest extends YMRequest<OpenRadioRequest.OpenRadioRespon
 
         public OpenRadioResponse(JsonElement response) {
             super(response);
+            System.out.println(new GsonBuilder().setPrettyPrinting().create().toJson(response));
         }
 
         public List<YMPlaylistTrack> getTracks() {

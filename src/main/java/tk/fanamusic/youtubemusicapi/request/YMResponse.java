@@ -7,7 +7,7 @@ import com.google.gson.JsonObject;
 public abstract class YMResponse {
 
     private JsonElement response;
-    private final Gson gson;
+    protected final Gson gson;
     public YMResponse(JsonElement response) {
         this.response = response;
         this.gson = new Gson();

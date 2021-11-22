@@ -10,5 +10,8 @@ public abstract class YMRequest<Response extends YMResponse> {
     public abstract String getRequestURL();
     public abstract JsonElement getBody();
     public abstract Response newResponse(JsonElement response);
+    public boolean isRequiredAndroid() {
+        return false;
+    }
 
 }

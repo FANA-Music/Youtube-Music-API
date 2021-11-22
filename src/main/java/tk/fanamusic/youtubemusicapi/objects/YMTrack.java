@@ -1,4 +1,4 @@
-package tk.fanamusic.youtubemusicapi.classes;
+package tk.fanamusic.youtubemusicapi.objects;
 
 public class YMTrack {
 

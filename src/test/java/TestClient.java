@@ -1,32 +1,24 @@
-import org.gnome.gtk.Test;
 import tk.fanamusic.youtubemusicapi.YoutubeMusicAPI;
-import tk.fanamusic.youtubemusicapi.classes.YMPlaylistTrack;
+import tk.fanamusic.youtubemusicapi.objects.YMPlaylistTrack;
 import tk.fanamusic.youtubemusicapi.request.requests.OpenRadioRequest;
+import tk.fanamusic.youtubemusicapi.request.requests.VideoInfoRequest;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class TestClient {
 
     public static void main(String[] args) throws Exception{
-        InputStream headerIn = new FileInputStream("key.txt");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(headerIn));
-        String header = "";
-        String line = null;
-        while ((line = bufferedReader.readLine()) != null) {
-            header += line + "\n";
-        }
-        print("Key: ", header);
 
-        YoutubeMusicAPI api = new YoutubeMusicAPI.Builder(header)
+        YoutubeMusicAPI api = new YoutubeMusicAPI.Builder()
                 .build();
-        OpenRadioRequest.OpenRadioResponse response = api.request(new OpenRadioRequest("mcPkJKkqeUg"));
+
+        OpenRadioRequest.OpenRadioResponse response = api.request(new OpenRadioRequest("TFALdg7HUJU"));
         for (YMPlaylistTrack track : response.getTracks()) {
             System.out.println("https://music.youtube.com/watch?v=" + track.getVideoId() + "&list=" + track.getPlaylistId());
         }
+
+        VideoInfoRequest.VideoInfoResponse videoInfo = api.request(new VideoInfoRequest("TFALdg7HUJU"));
+        System.out.println(videoInfo.getDetail().getTitle());
     }
 
     private static String input() {
