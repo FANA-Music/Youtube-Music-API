@@ -8,6 +8,8 @@ import tk.fanamusic.youtubemusicapi.request.YMRequest;
 import tk.fanamusic.youtubemusicapi.request.YMResponse;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class YoutubeMusicAPI {
 
@@ -84,5 +86,18 @@ public class YoutubeMusicAPI {
 
     public String getKey() {
         return key;
+    }
+
+    public static String extractVideoID(String urlOrId) {
+        Pattern pattern = Pattern.compile("[&?]v=");
+        Matcher matcher = pattern.matcher(urlOrId);
+        if (matcher.find()) {
+            int start = matcher.end();
+            int end = urlOrId.indexOf("&", start);
+            if (end < 0) end = urlOrId.length();
+            return urlOrId.substring(start, end);
+        } else {
+            return urlOrId;
+        }
     }
 }
